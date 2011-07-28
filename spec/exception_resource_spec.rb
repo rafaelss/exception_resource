@@ -31,5 +31,15 @@ describe ExceptionResource do
       ex.save.should == false
     end
   end
+
+  it "should merge site url with pre-defined path" do
+    ExceptionResource.site = "http://localhost:3000?token=123456789"
+
+    with_exception do |ex|
+      Artifice.activate_with(SiteWithQueryStringApp.new) do
+        ex.save.should == true
+      end
+    end
+  end
 end
 
