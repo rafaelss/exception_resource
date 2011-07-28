@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = ExceptionResource::VERSION
   s.authors     = ["Rafael Souza"]
   s.email       = ["me@rafaelss.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://github.com/rafaelss/exception_resource"
+  s.summary     = %q{Save your exceptions}
+  s.description = %q{Save your exceptions}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
