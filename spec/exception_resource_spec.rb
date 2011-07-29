@@ -8,17 +8,17 @@ describe ExceptionResource do
   it "should send the exception to configured url" do
     with_exception do |ex|
       Artifice.activate_with(ExceptionApp.new) do
-        ex.save.should == true
+        ExceptionResource.create(ex).should == true
       end
     end
   end
 
-  it "should re-raise itself" do
+  it "should re-raise the exception" do
     ExceptionResource.site = "http://google.com"
 
     with_exception do |ex|
       Artifice.activate_with(ExceptionApp.new) do
-        lambda { ex.save! }.should raise_error(ex)
+        lambda { ExceptionResource.create!(ex) }.should raise_error(ex)
       end
     end
   end
@@ -28,7 +28,7 @@ describe ExceptionResource do
     Net::HTTP.should_receive(:post_form).never
 
     with_exception do |ex|
-      ex.save.should == false
+      ExceptionResource.create(ex).should == false
     end
   end
 
@@ -37,7 +37,7 @@ describe ExceptionResource do
 
     with_exception do |ex|
       Artifice.activate_with(SiteWithQueryStringApp.new) do
-        ex.save.should == true
+        ExceptionResource.create(ex).should == true
       end
     end
   end
