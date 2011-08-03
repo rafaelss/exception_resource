@@ -17,15 +17,11 @@ module ExceptionResource
     url.path = "/" if url.path.empty?
     url.path += "exceptions"
 
-    if url
-      response = nil
-      Net::HTTP.start(url.host, url.port) do |request|
-        response = request.post(url.request_uri, exception.to_hash.map { |k, v| "#{k}=#{v}" }.join("&"))
-      end
-      response.code == "201"
-    else
-      false
+    response = nil
+    Net::HTTP.start(url.host, url.port) do |request|
+      response = request.post(url.request_uri, exception.to_hash.map { |k, v| "#{k}=#{v}" }.join("&"))
     end
+    response.code == "201"
   end
 
   def self.create!(exception)
