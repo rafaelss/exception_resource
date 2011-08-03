@@ -1,5 +1,6 @@
 require "exception_resource/version"
 require "exception-hashify"
+require "addressable/uri"
 
 module ExceptionResource
   def self.site=(value)
@@ -11,7 +12,7 @@ module ExceptionResource
   end
 
   def self.create(exception)
-    url = URI.parse(site) rescue nil
+    url = Addressable::URI.parse(site)
     return false unless url
 
     url.path = "/" if url.path.empty?

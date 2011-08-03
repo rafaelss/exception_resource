@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "exception-hashify", "~> 0.0.1"
+  s.add_runtime_dependency "addressable", "~> 2.2.6"
   s.add_development_dependency "rspec", "~> 2.6.0"
   s.add_development_dependency "artifice", "~> 0.6"
   s.add_development_dependency "rack", ">= 1.0"
