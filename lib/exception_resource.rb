@@ -1,6 +1,7 @@
 require "exception_resource/version"
 require "exception-hashify"
 require "addressable/uri"
+require "net/http"
 
 module ExceptionResource
   def self.site=(value)
