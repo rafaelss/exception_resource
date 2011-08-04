@@ -21,7 +21,7 @@ module ExceptionResource
 
     response = nil
     Net::HTTP.start(url.host, url.port) do |request|
-      response = request.post(url.request_uri, exception.to_hash.map { |k, v| "#{k}=#{v}" }.join("&"))
+      response = request.post(url.request_uri, to_query(exception))
     end
     response.code == "201"
   end
@@ -29,6 +29,14 @@ module ExceptionResource
   def self.create!(exception)
     create(exception)
     raise exception
+  end
+
+  protected
+
+  def self.to_query(exception)
+    uri = Addressable::URI.new
+    uri.query_values = exception.to_hash
+    uri.query
   end
 end
 
